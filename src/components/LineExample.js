@@ -1,4 +1,5 @@
 import {Line} from 'vue-chartjs'
+import ChartJSdragDataPlugin from 'chartjs-plugin-dragdata'
 
 export default Line.extend({
   data () {
@@ -18,6 +19,8 @@ export default Line.extend({
     this.gradient.addColorStop(0, 'rgba(255, 0,0, 0.5)')
     this.gradient.addColorStop(0.5, 'rgba(255, 0, 0, 0.25)');
     this.gradient.addColorStop(1, 'rgba(255, 0, 0, 0)');
+
+    this.addPlugin(ChartJSdragDataPlugin);
 
     this.renderChart({
       labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
@@ -40,7 +43,27 @@ export default Line.extend({
           data: [60, 55, 32, 10, 2, 12, 53]
         }
       ]
-    }, {responsive: true, maintainAspectRatio: false})
+    }, {responsive: true, maintainAspectRatio: false,
+      dragData: true,
+      dragX: false,
+      onDragStart: function (event, element) {
+        
+      },
+      onDrag: function (event, datasetIndex, index, value) {
+        
+      },
+      onDragEnd: function (event, datasetIndex, index, value) {
+        console.log(datasetIndex + ' ' + index + ' ' + value)
+      },
+      scales: {
+        yAxes: [{
+          ticks: {
+            max: 100,
+            min: 0
+          }
+        }]
+      }
+    })
 
   }
 })
