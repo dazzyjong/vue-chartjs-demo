@@ -9,6 +9,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "chartjs-plugin-dragdata": "https://github.com/dazzyjong/chartjs-plugin-dragData.git",
     "vue": "2.1.10",
     "vue-chartjs": "^2.3.7"
   },
